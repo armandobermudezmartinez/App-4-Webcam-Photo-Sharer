@@ -21,8 +21,9 @@ class CameraScreen(Screen):
 
     def capture(self):
         current_time = time.strftime('%Y%m%d-%H%M%S')
-        filename = current_time + ".png"
-        self.ids.camera.export_to_png(filename)
+        filepath = f"files/{current_time}.png"
+        self.ids.camera.export_to_png(filepath)
+        self.manager.current = 'image_screen'
 
 
 class ImageScreen(Screen):
