@@ -30,7 +30,9 @@ class CameraScreen(Screen):
 class ImageScreen(Screen):
     def create_link(self):
         file_path = App.get_running_app().root.ids.camera_screen.filepath
-        print(file_path)
+        filesharer = FileSharer(file_path=file_path)
+        url = filesharer.share()
+        self.ids.link.text = url
 
 
 class RootWidget(ScreenManager):
