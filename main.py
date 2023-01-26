@@ -30,6 +30,7 @@ class CameraScreen(Screen):
 
 
 class ImageScreen(Screen):
+    link_message = "Create a Link First"
     def create_link(self):
         file_path = App.get_running_app().root.ids.camera_screen.filepath
         filesharer = FileSharer(file_path=file_path)
@@ -37,16 +38,18 @@ class ImageScreen(Screen):
         self.ids.link.text = self.url
 
     def copy_link(self):
+        """Copy link to the clipboard available for pasting"""
         try:
             Clipboard.copy(self.url)
         except:
-            self.ids.link.text = "Create a Link First"
+            self.ids.link.text = self.link_message
 
     def open_link(self):
+        """Open link with default browser"""
         try:
             webbrowser.open(self.url)
         except:
-            self.ids.link.text = "Create a Link First"
+            self.ids.link.text = self.link_message
 
 
 class RootWidget(ScreenManager):
