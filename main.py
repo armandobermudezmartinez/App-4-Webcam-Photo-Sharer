@@ -21,14 +21,16 @@ class CameraScreen(Screen):
 
     def capture(self):
         current_time = time.strftime('%Y%m%d-%H%M%S')
-        filepath = f"files/{current_time}.png"
-        self.ids.camera.export_to_png(filepath)
+        self.filepath = f"files/{current_time}.png"
+        self.ids.camera.export_to_png(self.filepath)
         self.manager.current = 'image_screen'
-        self.manager.current_screen.ids.img.source = filepath
+        self.manager.current_screen.ids.img.source = self.filepath
 
 
 class ImageScreen(Screen):
-    pass
+    def create_link(self):
+        file_path = App.get_running_app().root.ids.camera_screen.filepath
+        print(file_path)
 
 
 class RootWidget(ScreenManager):
